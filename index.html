@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        img {
+            max-width: 300px;
+            max-height: 300px;
+        }
+    </style>
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+    
+    <img src="" alt="">
+    <form action="">
+        <h2>&#128136;Barbearia do zé&#128136;</h2>
+        <h3>Agende seu horario abaixo  &#128071;</h3>
+
+        <h3>Seus dados pessoais</h3>
+        <div>
+            <label for="nome">Nome</label>
+            <input type="text" name="nome" id="nome">
+            <br>
+            <label for="telefone">Celular</label>
+            <input type="tel" name="telefone" id="telefone">
+            <br>
+            <label for="email">Email</label>
+            <input type="email" name="email" id="email">
+            <br>
+        </div>
+        <h3>Selecione o Serviço desejado</h3>
+        <div>
+            <select id="opcao" onchange="mostrarImagem()">
+                <option value="imagem1">Opção 1 - Barba e Cabelo Russo</option>
+                <option value="imagem2">Opção 2 - Calvo de cria</option>
+                <option value="imagem3">Opção 3 - Mullet </option>
+            </select>
+            <img id="imagemSelecionada" src="src/imagem1.jpg" alt="Imagem Selecionada">
+            <script>
+                function mostrarImagem() {
+                    var select = document.getElementById("opcao");
+                    var imagem = document.getElementById("imagemSelecionada");
+                    var valorOpcao = select.options[select.selectedIndex].value;
+                    switch (valorOpcao) {
+                        case "imagem1":
+                            imagem.src = "src/imagem1.jpg";
+                            break;
+                        case "imagem2":
+                            imagem.src = "src/imagem2.jpg";
+                            break;
+                        case "imagem3":
+                            imagem.src = "src/imagem3.jpg";
+                            break;
+                        default:
+
+                            imagem.src = "";
+                    }
+                }
+            </script>
+        </div>
+        <h3>Selecione o barbeiro de sua preferencia</h3>
+        <div>
+            <label for="barbeiro">Barbeiro</label>
+            <select name="barbeiro" id="barbeiro" onchange="mostrarImagemBarbeiro()">
+                <option value="ze">Zé</option>
+                <option value="jonas">Jonas</option>
+                <option value="mariano">Mariano</option>
+            </select>
+            <img id="barbeiroSelecionado" src="src/zé.jpg" alt="barbeiro selecionado">
+
+            <script>
+                function mostrarImagemBarbeiro() {
+                    var select = document.getElementById("barbeiro");
+                    var imagem = document.getElementById("barbeiroSelecionado");
+                    var barbeiroSelect = select.options[select.selectedIndex].value;
+                    switch (barbeiroSelect) {
+                        case "jonas":
+                            imagem.src = "src/jonas.jpg";
+                            break;
+                        case "mariano":
+                            imagem.src = "src/mariano.jpg";
+                            break;
+                        case "ze":
+                            imagem.src = "src/zé.jpg";
+                            break;
+                        default:
+
+                            imagem.src = "";
+                    }
+                }
+            </script>
+            <label for="data">Data de preferencia</label>
+            <input type="date" name="data" id="data">
+            <label for="hora">Escolha um Horario:</label>
+            <input type="time" id="hora" name="hora" min="09:00" max="18:00" required />
+            <small>Horario de atendimento- [09:00 - 18:00]</small>
+    </form>
+</body>
+
+</html>
