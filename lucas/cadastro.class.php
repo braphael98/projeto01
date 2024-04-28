@@ -85,7 +85,7 @@ class Cadastro {
     public function listaClientes(){
         $database = new Conexao();
         $db = $database->getConnection();
-        $sql = "Select * from clientes";
+        $sql = "SELECT * FROM clientes";
         try{
             $stmt= $db->query($sql);
             $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -101,7 +101,7 @@ class Cadastro {
         $database = new Conexao();
         $db = $database->getConnection();
 
-        $sql = 'insert into clientes (nome, telefone, email, senha, corte, barbeiro, data, hora) values (:nome, :telefone, :email, :senha, :corte, :barbeiro, :data, :hora)';
+        $sql = 'INSERT INTO clientes (nome, telefone, email, senha, corte, barbeiro, data, hora) values (:nome, :telefone, :email, :senha, :corte, :barbeiro, :data, :hora)';
         try{
             $stmt = $db->prepare($sql);
             $stmt->bindParam(':nome',$this->nome);
@@ -156,5 +156,31 @@ class Cadastro {
             echo 'Erro ao alterar cliente'. $e->getMessage();
             return false;
         }
+    }
+
+    public function selectCliente($email, $senha){
+        $database = new Conexao();
+        $db = $database->getConnection();
+        $sql = "SELECT * FROM clientes WHERE email=$email AND senha=$senha";
+        try{
+            $stmt= $db->query($sql);
+            $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            return $result;
+        }catch(PDOException $e){
+            echo 'Erro ao listar clientes: ' . $e->getMessage();
+            $result = [];
+            return $result;
+        }
+    }
+
+    public function mostrarDados() {
+        echo "Nome: " . $this->getNome() . "<br>" . 
+        "Telefone: " . $this->getTelefone() . "<br>" .
+        "E-mail: " . $this->getEmail() . "<br>" .
+        "Senha: " . $this->getSenha() . "<br>" .
+        "Corte: " . $this->getCorte() . "<br>" .
+        "Barbeiro: " . $this->getBarbeiro() . "<br>" .
+        "Data: " . $this->getData() . "<br>" .
+        "Horário: " . $this->getHora() . "<br>";
     }
 }
