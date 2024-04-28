@@ -18,10 +18,10 @@
                 <th>Barbeiro</th>
                 <th>Data</th>
                 <th>Horário</th>
-            </tr>    
+            </tr>
         </thead>
         <tbody>
-            <?php  
+            <?php
                 include "cadastro.class.php";
                 $c = new Cadastro();
                 $clientes = $c->listaClientes();
@@ -39,7 +39,7 @@
                 <td><?php echo $cliente['hora']?></td>
             </tr>
             <?php } ?>
-        </tbody>    
+        </tbody>
     </table>
     
 </body>
