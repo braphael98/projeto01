@@ -161,7 +161,23 @@ class Cadastro {
     public function selectCliente($email, $senha){
         $database = new Conexao();
         $db = $database->getConnection();
-        $sql = "SELECT * FROM clientes WHERE email=$email AND senha=$senha";
+        $sql = "SELECT * FROM clientes WHERE email='$email' AND senha='$senha'";
+        //echo "$sql";
+        try{
+            $stmt= $db->query($sql);
+            $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            return $result;
+        }catch(PDOException $e){
+            echo 'Erro ao listar clientes: ' . $e->getMessage();
+            $result = [];
+            return $result;
+        }
+    }
+
+    public function consultaHorario($barbeiro, $data, $hora){
+        $database = new Conexao();
+        $db = $database->getConnection();
+        $sql = "SELECT * FROM clientes where barbeiro='$barbeiro' AND data='$data' AND hora='$hora'";
         try{
             $stmt= $db->query($sql);
             $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
