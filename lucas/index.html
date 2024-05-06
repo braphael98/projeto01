@@ -28,7 +28,7 @@
     </center>
         <div>
             <label for="nome" style="box-shadow: 0px 0px 10px 0px #3f3f3f;">Nome</label>
-            <input type="text" name="nome" id="nome" required pattern="[a-zA-Z]+">
+            <input type="text" name="nome" id="nome" required>
             <br>
             <label for="telefone" style="box-shadow: 0px 0px 10px 0px #3f3f3f;">Telefone</label>
             <input type="text" name="telefone" id="telefone" required pattern="[0-9]{9,11}">
@@ -37,7 +37,7 @@
             <input type="email" name="email" id="email" required>
             <br>
             <label for="senha">Senha</label>
-            <input type="password" id="senha" name="senha" required minlength="5">
+            <input type="password" id="senha" name="senha" required minlength="5" maxlength="20">
             <br>
         </div>
         <label for="opcao" style="box-shadow: 0px 0px 10px 0px #777777;">

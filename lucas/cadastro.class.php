@@ -101,7 +101,7 @@ class Cadastro {
         $database = new Conexao();
         $db = $database->getConnection();
 
-        $sql = 'INSERT INTO clientes (nome, telefone, email, senha, corte, barbeiro, data, hora) values (:nome, :telefone, :email, :senha, :corte, :barbeiro, :data, :hora)';
+        $sql = 'INSERT INTO clientes (nome, telefone, email, senha) values (:nome, :telefone, :email, :senha)';
         try{
             $stmt = $db->prepare($sql);
             $stmt->bindParam(':nome',$this->nome);
