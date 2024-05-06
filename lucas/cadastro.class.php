@@ -138,7 +138,7 @@ class Cadastro {
     public function alterarCliente(){
         $database = new Conexao();
         $db = $database->getConnection();
-        $sql = "UPDATE clientes SET nome=:nome, telefone=:telefone, email=:email, senha=:senha, corte=:corte, barbeiro=:barbeiro, data=:data, hora=:hora, WHERE id_cliente=:id_cliente";
+        $sql = "UPDATE clientes SET nome=:nome, telefone=:telefone, email=:email, senha=:senha, corte=:corte, barbeiro=:barbeiro, data=:data, hora=:hora WHERE id_cliente=:id_cliente";
         try{
             $stmt = $db->prepare($sql);
             $stmt->bindParam(':id_cliente',$this->id_cliente);
@@ -162,7 +162,6 @@ class Cadastro {
         $database = new Conexao();
         $db = $database->getConnection();
         $sql = "SELECT * FROM clientes WHERE email='$email' AND senha='$senha'";
-        //echo "$sql";
         try{
             $stmt= $db->query($sql);
             $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -174,29 +173,4 @@ class Cadastro {
         }
     }
 
-    public function consultaHorario($barbeiro, $data, $hora){
-        $database = new Conexao();
-        $db = $database->getConnection();
-        $sql = "SELECT * FROM clientes where barbeiro='$barbeiro' AND data='$data' AND hora='$hora'";
-        try{
-            $stmt= $db->query($sql);
-            $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
-            return $result;
-        }catch(PDOException $e){
-            echo 'Erro ao listar clientes: ' . $e->getMessage();
-            $result = [];
-            return $result;
-        }
-    }
-
-    public function mostrarDados() {
-        echo "Nome: " . $this->getNome() . "<br>" . 
-        "Telefone: " . $this->getTelefone() . "<br>" .
-        "E-mail: " . $this->getEmail() . "<br>" .
-        "Senha: " . $this->getSenha() . "<br>" .
-        "Corte: " . $this->getCorte() . "<br>" .
-        "Barbeiro: " . $this->getBarbeiro() . "<br>" .
-        "Data: " . $this->getData() . "<br>" .
-        "Horário: " . $this->getHora() . "<br>";
-    }
 }
