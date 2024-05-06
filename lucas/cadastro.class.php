@@ -172,5 +172,19 @@ class Cadastro {
             return $result;
         }
     }
+    public function consultaHorario($barbeiro, $data, $hora){
+        $database = new Conexao();
+        $db = $database->getConnection();
+        $sql = "SELECT * FROM clientes WHERE barbeiro = '$barbeiro' AND data = '$data' AND hora = '$hora'";
+        try{
+            $stmt= $db->query($sql);
+            $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            return $result;
+        }catch(PDOException $e){
+            echo 'Erro ao ver horarios: ' . $e->getMessage();
+            $result = [];
+            return $result;
+        }
+    }
 
 }

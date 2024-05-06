@@ -29,15 +29,15 @@
     $c->setData($data);
     $c->setHora($hora);
     $cliente = $c->consultaHorario($barbeiro, $data, $hora);
-    foreach ($cliente as $cl){
-        if(empty($cl)){
-            $c->inserirCliente();
-        } else{
-            echo "<h1> DEU RUIM </h1>";
-        }
-    }
-
-
+    if(empty($cliente)){
+        echo "<h1> DEU BOM </h1>";
+        $c->inserirCliente();
+    } else{
+        echo "<h1> DEU RUIM </h1>";
+    } 
+    
+   
+   
     ?>
     <h1>Cadastro realizado com sucesso</h1>
     <a href="./index.html">Retornar</a>
