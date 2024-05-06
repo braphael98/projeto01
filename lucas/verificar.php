@@ -28,7 +28,12 @@
     <br>
     <a href="novoAgendamento.php">Novo agendamento</a><br>
     <a href="cancelar.php">Cancelar agendamento</a><br>
-    <a href="alterar.php">Alterar dados</a><br>
+    <form action="alterar.php" method="post">
+        <input type="hidden" name="email" value="<?= $email;?>">
+        <input type="hidden" name="senha" value="<?= $senha;?>">
+        <input type="submit" value="Alterar dados">
+        <br>
+    </form>
     <a href="./index.html">Retornar</a><br>
 
 </body>
