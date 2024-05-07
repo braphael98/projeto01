@@ -26,8 +26,18 @@
         }
     ?>
     <br>
-    <a href="novoAgendamento.php">Novo agendamento</a><br>
-    <a href="cancelar.php">Cancelar agendamento</a><br>
+    <form action="novoAgendamento.php" method="post">
+        <input type="hidden" name="email" value="<?= $email;?>">
+        <input type="hidden" name="senha" value="<?= $senha;?>">
+        <input type="submit" value="Novo Agendamento">
+        <br>
+    </form>
+    <form action="alterar.php" method="post">
+        <input type="hidden" name="email" value="<?= $email;?>">
+        <input type="hidden" name="senha" value="<?= $senha;?>">
+        <input type="submit" value="Cancelar agendamento">
+        <br>
+    </form>
     <form action="alterar.php" method="post">
         <input type="hidden" name="email" value="<?= $email;?>">
         <input type="hidden" name="senha" value="<?= $senha;?>">
