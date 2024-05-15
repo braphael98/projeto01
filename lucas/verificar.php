@@ -18,12 +18,15 @@
             echo "Nome: " . $c['nome'] . "<br>" . 
             "Telefone: " . $c['telefone'] . "<br>" .
             "E-mail: " . $c['email'] . "<br>" .
-            "Senha: " . $c['senha'] . "<br>" .
-            "Corte: " . $c['corte'] . "<br>" .
+            "Senha: " . $c['senha'] . "<br>";
+        }
+
+        /*foreach($horario as $h){
+            echo "Corte: " . $c['corte'] . "<br>" .
             "Barbeiro: " . $c['barbeiro'] . "<br>" .
             "Data: " . $c['data'] . "<br>" .
             "Horário: " . $c['hora'] . "<br>";
-        }
+        }*/
     ?>
     <br>
     <form action="novoAgendamento.php" method="post">
