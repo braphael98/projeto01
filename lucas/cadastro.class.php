@@ -108,10 +108,6 @@ class Cadastro {
             $stmt->bindParam(':telefone',$this->telefone);
             $stmt->bindParam(':email',$this->email);
             $stmt->bindParam(':senha',$this->senha);
-            $stmt->bindParam(':corte',$this->corte);
-            $stmt->bindParam(':barbeiro',$this->barbeiro);
-            $stmt->bindParam(':data',$this->data);
-            $stmt->bindParam(':hora',$this->hora);
             $stmt->execute();
             return true;
         } catch(PDOException $e){
