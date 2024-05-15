@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <body>
+        <form action="inserir.php" method="post" id="meuForm">
+            <center>
+    
+            
+            <h2>&#128136;Barbearia do zé&#128136;</h2>
+        </center>
+            <div>
+                <label for="nome" style="box-shadow: 0px 0px 10px 0px #3f3f3f;">Nome</label>
+                <input type="text" name="nome" id="nome" required>
+                <br>
+                <label for="telefone" style="box-shadow: 0px 0px 10px 0px #3f3f3f;">Telefone</label>
+                <input type="text" name="telefone" id="telefone" required pattern="[0-9]{9,11}">
+                <br>
+                <label for="email" style="box-shadow: 0px 0px 10px 0px #3f3f3f;">E-mail</label>
+                <input type="email" name="email" id="email" required>
+                <br>
+                <label for="senha">Senha</label>
+                <input type="password" id="senha" name="senha" required minlength="5" maxlength="20">
+                <br>
+                <input type = "submit" value="Cadastrar">
+                <br>
+                <a href="login.php"><button type="button">Já tenho cadastro</button></a>
+
+            </div>
+            
+</body>
+</html>
