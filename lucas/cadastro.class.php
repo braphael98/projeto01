@@ -168,6 +168,22 @@ class Cadastro {
             return $result;
         }
     }
+
+    public function selectClienteId($id_cliente){
+        $database = new Conexao();
+        $db = $database->getConnection();
+        $sql = "SELECT * FROM clientes WHERE id_cliente='$id_cliente'";
+        try{
+            $stmt= $db->query($sql);
+            $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            return $result;
+        }catch(PDOException $e){
+            echo 'Erro ao listar clientes: ' . $e->getMessage();
+            $result = [];
+            return $result;
+        }
+    }
+
     public function consultaHorario($barbeiro, $data, $hora){
         $database = new Conexao();
         $db = $database->getConnection();
@@ -182,5 +198,28 @@ class Cadastro {
             return $result;
         }
     }
+
+    public function inserirAgendamento(){
+        $database = new Conexao();
+        $db = $database->getConnection();
+
+        $sql = 'INSERT INTO horarios (id_cliente, barbeiro, data, hora, corte) values (:id_cliente, :barbeiro, :data, :hora, :corte)';
+        try{
+            $stmt = $db->prepare($sql);
+            $stmt->bindParam(':id_cliente',$this->id_cliente);
+            $stmt->bindParam(':barbeiro',$this->barbeiro);
+            $stmt->bindParam(':data',$this->data);
+            $stmt->bindParam(':hora',$this->hora);
+            $stmt->bindParam(':corte',$this->corte);
+            $stmt->execute();
+            echo "CÚ";
+            return true;
+        } catch(PDOException $e){
+            echo 'Erro ao inserir cliente'. $e->getMessage();
+            return false;
+        }
+    }
+
+
 
 }

@@ -15,13 +15,15 @@
         $cliente=$c->selectCliente($email, $senha);
 
         foreach($cliente as $c) {
-            echo "Nome: " . $c['nome'] . "<br>" . 
+            echo "ID: " .$c['id_cliente'] . "<br>" .
+            "Nome: " . $c['nome'] . "<br>" . 
             "Telefone: " . $c['telefone'] . "<br>" .
             "E-mail: " . $c['email'] . "<br>" .
             "Senha: " . $c['senha'] . "<br>";
         }
 
-        /*foreach($horario as $h){
+        /*$cliente=$c->selectHorario($email, $senha);
+        foreach($cliente as $h){
             echo "Corte: " . $c['corte'] . "<br>" .
             "Barbeiro: " . $c['barbeiro'] . "<br>" .
             "Data: " . $c['data'] . "<br>" .
@@ -29,25 +31,22 @@
         }*/
     ?>
     <br>
-    <form action="novoAgendamento.php" method="post">
-        <input type="hidden" name="email" value="<?= $email;?>">
-        <input type="hidden" name="senha" value="<?= $senha;?>">
+    <form action="Agendamento.php" method="post">
+        <input type="hidden" name="id_cliente" value="<?= $c['id_cliente']?>">
         <input type="submit" value="Novo Agendamento">
         <br>
     </form>
     <form action="alterar.php" method="post">
-        <input type="hidden" name="email" value="<?= $email;?>">
-        <input type="hidden" name="senha" value="<?= $senha;?>">
+        <input type="hidden" name="id_cliente" value="<?= $c['id_cliente']?>">
         <input type="submit" value="Cancelar agendamento">
         <br>
     </form>
     <form action="alterar.php" method="post">
-        <input type="hidden" name="email" value="<?= $email;?>">
-        <input type="hidden" name="senha" value="<?= $senha;?>">
+        <input type="hidden" name="id_cliente" value="<?= $c['id_cliente']?>">
         <input type="submit" value="Alterar dados">
         <br>
     </form>
-    <a href="./index.html">Retornar</a><br>
+    <a href="login.html">Retornar</a><br>
 
 </body>
 </html>
