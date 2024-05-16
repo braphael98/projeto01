@@ -25,6 +25,6 @@
     $c->inserirCliente();
     ?>
     <h1>Cadastro realizado com sucesso</h1>
-    <a href="./index.html">Retornar</a>
+    <a href="login.php">Retornar</a>
 </body>
 </html>

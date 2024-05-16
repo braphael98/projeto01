@@ -15,6 +15,6 @@
         <br>
         <input type="submit" value="Enviar">
     </form>
-    <a href="./index.html">Retornar</a>
+    <a href="cadastro.html">Retornar</a>
 </body>
 </html>

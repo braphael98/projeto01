@@ -8,18 +8,21 @@
 <body>
 <?php
     include "cadastro.class.php";
-
+    $id_cliente = $_POST['id_cliente'];
     $corte = $_POST['corte'];
     $barbeiro = $_POST['barbeiro'];
     $data = $_POST['data'];
     $hora = $_POST['hora'];
 
-    $c = new agendamento();
+    $c = new cadastro();
 
-    $c->setNome($nome);
-    $c->setTelefone($telefone);
-    $c->setEmail($email);
-    $c->setSenha($senha);
+    $c->setId_cliente($id_cliente);
+    $c->setCorte($corte);
+    $c->setBarbeiro($barbeiro);
+    $c->setData($data);
+    $c->setHora($hora);
+
+    $c->inserirAgendamento();
 
     $cliente = $c->consultaHorario($barbeiro, $data, $hora);
     if(empty($cliente)){
