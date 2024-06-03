@@ -6,17 +6,17 @@
     <title>Alterar</title>
 </head>
 <body>
-    <form action="alterado.php" method="POST">
+    <form action="inserirAlterar.php" method="POST">
         <?php
             include "cadastro.class.php";
-            $email = $_POST['email'];
-            $senha = $_POST['senha'];
+            $id_cliente = $_POST['id_cliente'];
+
             $c = new Cadastro();
-            $cliente = $c->selectCliente($email, $senha);
+            $cliente = $c->selectClienteId($id_cliente);
             foreach($cliente as $c) {
         ?>
         <label for="nome">Nome</label>
-        <input type="text" name="nome" id="nome" value="<?= $c['nome'];?>" required pattern="[a-zA-Z]+">
+        <input type="text" name="nome" id="nome" value="<?= $c['nome'];?>" required>
         <br>
         <label for="telefone">Telefone</label>
         <input type="text" name="telefone" id="telefone" value="<?= $c['telefone'];?>" required pattern="[0-9]{9,11}">
@@ -25,11 +25,10 @@
         <input type="email" name="email" id="email" value="<?= $c['email'];?>" required>
         <br>
         <label for="senha">Senha</label>
-        <input type="text" id="senha" name="senha" value="<?= $c['senha'];?>" required minlength="5">
+        <input type="text" id="senha" name="senha" value="<?= $c['senha'];?>" required minlength="5" maxlength="20">
         <br>
         <?php } ?>
-        <input type="hidden" name="emailVelho" value="<?= $email;?>">
-        <input type="hidden" name="senhaVelha" value="<?= $senha;?>">
+        <input type="hidden" name="id_cliente" value="<?= $id_cliente;?>">
         <input type="submit" value="Confirmar">
     </form>
 </body>

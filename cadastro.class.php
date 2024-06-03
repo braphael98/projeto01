@@ -82,6 +82,8 @@ class Cadastro {
         $this->hora = $hora;
     }
 
+
+    //clientes
     public function listaClientes(){
         $database = new Conexao();
         $db = $database->getConnection();
@@ -111,7 +113,7 @@ class Cadastro {
             $stmt->execute();
             return true;
         } catch(PDOException $e){
-            echo 'Erro ao inserir cliente'. $e->getMessage();
+            echo 'Erro ao inserir cliente: '. $e->getMessage();
             return false;
         }
     }
@@ -119,22 +121,22 @@ class Cadastro {
     public function deletarCliente($id_cliente){
         $database = new Conexao();
         $db = $database->getConnection();
-        $sql = "DELETE FROM clientes WHERE id_cliente = $id_cliente";
+        $sql = "DELETE FROM clientes WHERE id_cliente=:id_cliente";
         try{
-            $stmt= $db->query($sql);
-            $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
-            return $result;
+            $stmt = $db->prepare($sql);
+            $stmt->bindParam(':id_cliente',$id_cliente);
+            $stmt->execute();
+            return true;
         }catch(PDOException $e){
             echo 'Erro ao cancelar cliente: ' . $e->getMessage();
-            $result = [];
-            return $result;
+            return false;
         }
     }
 
     public function alterarCliente(){
         $database = new Conexao();
         $db = $database->getConnection();
-        $sql = "UPDATE clientes SET nome=:nome, telefone=:telefone, email=:email, senha=:senha, corte=:corte, barbeiro=:barbeiro, data=:data, hora=:hora WHERE id_cliente=:id_cliente";
+        $sql = "UPDATE clientes SET nome=:nome, telefone=:telefone, email=:email, senha=:senha WHERE id_cliente=:id_cliente";
         try{
             $stmt = $db->prepare($sql);
             $stmt->bindParam(':id_cliente',$this->id_cliente);
@@ -142,10 +144,6 @@ class Cadastro {
             $stmt->bindParam(':telefone',$this->telefone);
             $stmt->bindParam(':email',$this->email);
             $stmt->bindParam(':senha',$this->senha);
-            $stmt->bindParam(':corte',$this->corte);
-            $stmt->bindParam(':barbeiro',$this->barbeiro);
-            $stmt->bindParam(':data',$this->data);
-            $stmt->bindParam(':hora',$this->hora);
             $stmt->execute();
             return true;
         } catch(PDOException $e){
@@ -157,13 +155,16 @@ class Cadastro {
     public function selectCliente($email, $senha){
         $database = new Conexao();
         $db = $database->getConnection();
-        $sql = "SELECT * FROM clientes WHERE email='$email' AND senha='$senha'";
+        $sql = "SELECT * FROM clientes WHERE email=:email AND senha=:senha";
         try{
-            $stmt= $db->query($sql);
+            $stmt = $db->prepare($sql);
+            $stmt->bindParam(':email',$email);
+            $stmt->bindParam(':senha',$senha);
+            $stmt->execute();
             $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
             return $result;
         }catch(PDOException $e){
-            echo 'Erro ao listar clientes: ' . $e->getMessage();
+            echo 'Erro ao listar cliente: ' . $e->getMessage();
             $result = [];
             return $result;
         }
@@ -172,37 +173,28 @@ class Cadastro {
     public function selectClienteId($id_cliente){
         $database = new Conexao();
         $db = $database->getConnection();
-        $sql = "SELECT * FROM clientes WHERE id_cliente='$id_cliente'";
+        $sql = "SELECT * FROM clientes WHERE id_cliente=:id_cliente";
         try{
-            $stmt= $db->query($sql);
+            $stmt = $db->prepare($sql);
+            $stmt->bindParam(':id_cliente',$id_cliente);
+            $stmt->execute();
             $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
             return $result;
         }catch(PDOException $e){
-            echo 'Erro ao listar clientes: ' . $e->getMessage();
+            echo 'Erro ao listar cliente: ' . $e->getMessage();
             $result = [];
             return $result;
         }
     }
 
-    public function consultaHorario($barbeiro, $data, $hora){
-        $database = new Conexao();
-        $db = $database->getConnection();
-        $sql = "SELECT * FROM clientes WHERE barbeiro = '$barbeiro' AND data = '$data' AND hora = '$hora'";
-        try{
-            $stmt= $db->query($sql);
-            $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
-            return $result;
-        }catch(PDOException $e){
-            echo 'Erro ao ver horarios: ' . $e->getMessage();
-            $result = [];
-            return $result;
-        }
-    }
 
+
+
+
+    //horarios
     public function inserirAgendamento(){
         $database = new Conexao();
         $db = $database->getConnection();
-
         $sql = 'INSERT INTO horarios (id_cliente, barbeiro, data, hora, corte) values (:id_cliente, :barbeiro, :data, :hora, :corte)';
         try{
             $stmt = $db->prepare($sql);
@@ -212,11 +204,62 @@ class Cadastro {
             $stmt->bindParam(':hora',$this->hora);
             $stmt->bindParam(':corte',$this->corte);
             $stmt->execute();
-            echo "CÚ";
             return true;
         } catch(PDOException $e){
-            echo 'Erro ao inserir cliente'. $e->getMessage();
+            echo 'Erro ao inserir agendamento'. $e->getMessage();
             return false;
+        }
+    }
+    
+    public function cancelarAgendamento($id_cliente, $data){
+        $database = new Conexao();
+        $db = $database->getConnection();
+        $sql = "DELETE FROM horarios WHERE id_cliente=:id_cliente AND data=:data";
+        try{
+            $stmt = $db->prepare($sql);
+            $stmt->bindParam(':id_cliente',$id_cliente);
+            $stmt->bindParam(':data',$data);
+            $stmt->execute();
+            return true;
+        }catch(PDOException $e){
+            echo 'Erro ao cancelar agendamento: ' . $e->getMessage();
+            return false;
+        }
+    }
+
+    public function selectAgendamento($id_cliente){
+        $database = new Conexao();
+        $db = $database->getConnection();
+        $sql = "SELECT * FROM horarios WHERE id_cliente=:id_cliente ORDER BY id_cliente DESC LIMIT 1";
+        try{
+            $stmt = $db->prepare($sql);
+            $stmt->bindParam(':id_cliente',$id_cliente);
+            $stmt->execute();
+            $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            return $result;
+        }catch(PDOException $e){
+            echo 'Erro ao listar agendamento: ' . $e->getMessage();
+            $result = [];
+            return $result;
+        }
+    }
+
+    public function consultarHorario($barbeiro, $data, $hora){
+        $database = new Conexao();
+        $db = $database->getConnection();
+        $sql = "SELECT * FROM clientes WHERE barbeiro=:barbeiro AND data=:data AND hora=:hora";
+        try{
+            $stmt = $db->prepare($sql);
+            $stmt->bindParam(':barbeiro',$barbeiro);
+            $stmt->bindParam(':data',$data);
+            $stmt->bindParam(':hora',$hora);
+            $stmt->execute();
+            $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            return $result;
+        }catch(PDOException $e){
+            echo 'Erro ao ver horarios: ' . $e->getMessage();
+            $result = [];
+            return $result;
         }
     }
 

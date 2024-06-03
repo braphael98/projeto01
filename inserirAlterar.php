@@ -8,13 +8,15 @@
 <body>
     <?php
         include "cadastro.class.php";
+
+        $id_cliente = $_POST["id_cliente"];
         $nome = $_POST['nome'];
         $telefone = $_POST['telefone'];
         $email = $_POST['email'];
         $senha = $_POST['senha'];
 
         $c = new Cadastro();
-        $cliente = $c->selectCliente($emailVelho, $senhaVelha);
+        $cliente = $c->selectClienteId($id_cliente);
         foreach($cliente as $cl) {
             $c->setId_cliente($cl['id_cliente']);
             $c->setNome($cl['nome']);
