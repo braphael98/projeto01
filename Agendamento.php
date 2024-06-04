@@ -117,5 +117,7 @@
         <input type="hidden" name="id_cliente" value="<?= $c['id_cliente']?>">
         <input type="submit" value="Confirmar">
     </form>
+    <a href="verificar.php?id_cliente=<?php echo $id_cliente; ?>">Voltar</a>
+
 </body>
 </html>

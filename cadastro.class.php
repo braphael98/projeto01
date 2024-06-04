@@ -195,14 +195,14 @@ class Cadastro {
     public function inserirAgendamento(){
         $database = new Conexao();
         $db = $database->getConnection();
-        $sql = 'INSERT INTO horarios (id_cliente, barbeiro, data, hora, corte) values (:id_cliente, :barbeiro, :data, :hora, :corte)';
+        $sql = 'INSERT INTO horarios (id_cliente, barbeiro, corte ,data, hora) values (:id_cliente, :barbeiro, :corte, :data, :hora)';
         try{
             $stmt = $db->prepare($sql);
             $stmt->bindParam(':id_cliente',$this->id_cliente);
             $stmt->bindParam(':barbeiro',$this->barbeiro);
+            $stmt->bindParam(':corte',$this->corte);
             $stmt->bindParam(':data',$this->data);
             $stmt->bindParam(':hora',$this->hora);
-            $stmt->bindParam(':corte',$this->corte);
             $stmt->execute();
             return true;
         } catch(PDOException $e){
@@ -211,14 +211,13 @@ class Cadastro {
         }
     }
     
-    public function cancelarAgendamento($id_cliente, $data){
+    public function cancelarAgendamento($id_horario){
         $database = new Conexao();
         $db = $database->getConnection();
-        $sql = "DELETE FROM horarios WHERE id_cliente=:id_cliente AND data=:data";
+        $sql = "DELETE FROM horarios WHERE id_horario=:id_horario";
         try{
             $stmt = $db->prepare($sql);
-            $stmt->bindParam(':id_cliente',$id_cliente);
-            $stmt->bindParam(':data',$data);
+            $stmt->bindParam(':id_horario',$id_horario);
             $stmt->execute();
             return true;
         }catch(PDOException $e){
@@ -230,7 +229,8 @@ class Cadastro {
     public function selectAgendamento($id_cliente){
         $database = new Conexao();
         $db = $database->getConnection();
-        $sql = "SELECT * FROM horarios WHERE id_cliente=:id_cliente ORDER BY id_cliente DESC LIMIT 1";
+        $today = date("Y-m-d");
+        $sql = "SELECT * FROM horarios WHERE id_cliente=:id_cliente AND data >= '$today'";
         try{
             $stmt = $db->prepare($sql);
             $stmt->bindParam(':id_cliente',$id_cliente);
@@ -247,7 +247,7 @@ class Cadastro {
     public function consultarHorario($barbeiro, $data, $hora){
         $database = new Conexao();
         $db = $database->getConnection();
-        $sql = "SELECT * FROM clientes WHERE barbeiro=:barbeiro AND data=:data AND hora=:hora";
+        $sql = "SELECT * FROM horarios WHERE barbeiro=:barbeiro AND data=:data AND hora=:hora";
         try{
             $stmt = $db->prepare($sql);
             $stmt->bindParam(':barbeiro',$barbeiro);
@@ -262,7 +262,6 @@ class Cadastro {
             return $result;
         }
     }
-
 
 
 }

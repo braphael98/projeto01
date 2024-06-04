@@ -8,37 +8,57 @@
 <body>
     <?php
         include "cadastro.class.php";
-        $email = $_POST['email'];
-        $senha = $_POST['senha'];
-
         $c = new Cadastro();
-        $cliente=$c->selectCliente($email, $senha);
-
-        foreach($cliente as $cl) {
-            echo "Nome: " . $cl['nome'] . "<br>" . 
-            "Telefone: " . $cl['telefone'] . "<br>" .
-            "E-mail: " . $cl['email'] . "<br>" .
-            "Senha: " . $cl['senha'] . "<br>";
+        if(isset($_POST['email']) && $_POST['senha']){
+            $email = $_POST['email'];
+            $senha = $_POST['senha'];
+            $cliente=$c->selectCliente($email, $senha);
+        } else if ($_GET['id_cliente']) {
+            $id_cliente = $_GET['id_cliente'];
+            $cliente=$c->selectClienteId($id_cliente);
         }
 
-        $id = $cliente[0]['id_cliente'];
-        $horario=$c->selectAgendamento($id);
-        foreach($horario as $h){
-            echo "<br>" . "Barbeiro: " . $h['barbeiro'] . "<br>" .
-            "Corte: " . $h['corte'] . "<br>" .
-            "Data: " . $h['data'] . "<br>" .
-            "Horário: " . $h['hora'] . "<br>";
-        }
+        
+        if(empty($cliente)){
+            echo "E-mail ou senha invalidos";
+            ?>
+            <br>
+            <a href="login.php">Retornar</a><br>
+            <?php
+        } else {
+            foreach($cliente as $cl) {
+                echo "Nome: " . $cl['nome'] . "<br>" . 
+                "Telefone: " . $cl['telefone'] . "<br>" .
+                "E-mail: " . $cl['email'] . "<br>" .
+                "Senha: " . $cl['senha'] . "<br>";
+            }
+    
+            $id = $cliente[0]['id_cliente'];
+            $horario=$c->selectAgendamento($id);
+
+            if(empty($horario)){
+
+                echo "<br>"."Você não possui agendamentos"."<br>";
+            }
+    
+            foreach($horario as $h){
+                echo "<br>" . "Barbeiro: " . $h['barbeiro'] . "<br>" .
+                "Corte: " . $h['corte'] . "<br>" .
+                "Data: " . $h['data'] . "<br>" .
+                "Horário: " . $h['hora'] . "<br>";
+            }
+        
     ?>
+
     <br>
-    <form action="Agendamento.php" method="post">
+    <form action="agendamento.php" method="post">
         <input type="hidden" name="id_cliente" value="<?= $id?>">
         <input type="submit" value="Novo Agendamento">
         <br>
     </form>
-    <form action="CancelarAgendamento.php" method="post">
+    <form action="historico.php" method="post">
         <input type="hidden" name="id_cliente" value="<?= $id?>">
-        <input type="submit" value="Cancelar agendamento">
+        <input type="submit" value="Ver agendamentos">
         <br>
     </form>
     <form action="alterar.php" method="post">
@@ -47,6 +67,6 @@
         <br>
     </form>
     <a href="login.php">Retornar</a><br>
-
+<?php } ?>
 </body>
 </html>

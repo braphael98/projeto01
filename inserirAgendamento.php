@@ -25,8 +25,17 @@
         $horario = $c->consultarHorario($barbeiro, $data, $hora);
         if(empty($horario)){
             $c->inserirAgendamento();
+            echo "Agendado com sucesso";
+            ?>
+            <br>
+            <a href="agendamento.php">Retornar</a>
+            <?php
         } else {
             echo "Não foi possível agendar pois o horário já está preenchido";
+            ?>
+            <br>
+            <a href="agendamento.php">Retornar</a>
+            <?php
         } 
     ?>
 </body>
