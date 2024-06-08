@@ -26,17 +26,11 @@
         if(empty($horario)){
             $c->inserirAgendamento();
             echo "Agendado com sucesso";
-            ?>
-            <br>
-            <a href="agendamento.php">Retornar</a>
-            <?php
         } else {
             echo "Não foi possível agendar pois o horário já está preenchido";
-            ?>
-            <br>
-            <a href="agendamento.php">Retornar</a>
-            <?php
-        } 
+        }
     ?>
+    <br>
+    <a href="verificar.php?id_cliente=<?=$id_cliente?>">Retornar</a>
 </body>
 </html>

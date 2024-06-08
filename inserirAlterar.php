@@ -9,26 +9,14 @@
     <?php
         include "cadastro.class.php";
 
-        $id_cliente = $_POST["id_cliente"];
+        $id_cliente = $_POST['id_cliente'];
         $nome = $_POST['nome'];
         $telefone = $_POST['telefone'];
         $email = $_POST['email'];
         $senha = $_POST['senha'];
 
         $c = new Cadastro();
-        $cliente = $c->selectClienteId($id_cliente);
-        foreach($cliente as $cl) {
-            $c->setId_cliente($cl['id_cliente']);
-            $c->setNome($cl['nome']);
-            $c->setTelefone($cl['telefone']);
-            $c->setEmail($cl['email']);
-            $c->setSenha($cl['senha']);
-            $c->setCorte($cl['corte']);
-            $c->setBarbeiro($cl['barbeiro']);
-            $c->setData($cl['data']);
-            $c->setHora($cl['hora']);
-        }
-
+        $c->setId_cliente($id_cliente);
         $c->setNome($nome);
         $c->setTelefone($telefone);
         $c->setEmail($email);
@@ -36,7 +24,7 @@
 
         $c->alterarCliente();
     ?>
-    <h5>Dados Salvos</h5>
+    <h3>Dados Salvos</h3>
     <a href="login.php">Retornar</a>
 </body>
 </html>

@@ -3,25 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Cancelar</title>
 </head>
 <body>
     <?php
         include "cadastro.class.php";
         $id_cliente = $_POST['id_cliente'];
-        $cancelados = $_POST['cancelar'];
         $horario = new cadastro();
         
-        foreach ($cancelados as $c) {
-            $horario->cancelarAgendamento($c);
+        if(isset($_POST['cancelar'])){
+            $cancelados = $_POST['cancelar'];
+            foreach ($cancelados as $c) {
+                $horario->cancelarAgendamento($c);
+            }
+            echo "Agendamento cancelado" . "<br>";
+        } else {
+            echo "";
         }
-        echo "Agendamento cancelado". "<br>";
     ?>
-    <form action="historico.php" method="post">
-        <input type="hidden" name="id_cliente" value=<?=$id_cliente?>>
-        <input type=submit value="Retornar">
-    </form>
-
-    <a href="verificar.php?id_cliente=<?php echo $id_cliente; ?>">Voltar</a>
+    <a href="verificar.php?id_cliente=<?=$id_cliente?>">Retornar</a>
 </body>
 </html>

@@ -9,13 +9,13 @@
     <?php
         include "cadastro.class.php";
         $c = new Cadastro();
-        if(isset($_POST['email']) && $_POST['senha']){
+        if(isset($_POST['email']) && isset($_POST['senha'])){
             $email = $_POST['email'];
             $senha = $_POST['senha'];
-            $cliente=$c->selectCliente($email, $senha);
-        } else if ($_GET['id_cliente']) {
+            $cliente = $c->selectCliente($email, $senha);
+        } else {
             $id_cliente = $_GET['id_cliente'];
-            $cliente=$c->selectClienteId($id_cliente);
+            $cliente = $c->selectClienteId($id_cliente);
         }
 
         
@@ -37,7 +37,6 @@
             $horario=$c->selectAgendamento($id);
 
             if(empty($horario)){
-
                 echo "<br>"."Você não possui agendamentos"."<br>";
             }
     
