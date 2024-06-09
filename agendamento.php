@@ -25,7 +25,7 @@
             $cliente = $c->selectClienteId($id_cliente);
             foreach($cliente as $c) {
         ?>
-        <h1>Olá <?=$c['nome'];?></h1>
+        <h1>Olá <?=$c['nome']?></h1>
 
         <div>
             <center><select name="corte" id="corte" onchange="mostrarImagem()" required></center>
@@ -97,7 +97,7 @@
                 <option value="10:30">10:30</option>
                 <option value="11:00">11:00</option>
                 <option value="11:30">11:30</option>
-                <option value ="13:30">13:30</option>
+                <option value="13:30">13:30</option>
                 <option value="14:00">14:00</option>
                 <option value="14:30">14:30</option>
                 <option value="15:00">15:00</option>
@@ -109,13 +109,12 @@
             </select>
 
 
-
-
-
         <br>
         <?php } ?>
         <input type="hidden" name="id_cliente" value="<?= $c['id_cliente']?>">
         <input type="submit" value="Confirmar">
     </form>
+    <a href="verificar.php?id_cliente=<?=$id_cliente?>">Retornar</a>
+
 </body>
 </html>
