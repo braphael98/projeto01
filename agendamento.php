@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Novo Agendamento</title>
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="style.css">
     <style>
         img {
             max-width: 300px;
@@ -29,25 +29,25 @@
 
         <div>
             <center><select name="corte" id="corte" onchange="mostrarImagem()" required></center>
-                <option value="Barba e Cabelo Russo">Opção 1 - Barba e Cabelo Russo</option>
-                <option value="Calvo de cria">Opção 2 - Calvo de cria</option>
+                <option value="Barba e Cabelo">Opção 1 - Barba e Cabelo</option>
+                <option value="Corte Simples">Opção 2 - Corte Simples</option>
                 <option value="Mullet">Opção 3 - Mullet </option>
             </select>
-            <img id="imagemSelecionada" src="src/imagem1.jpg" alt="Imagem Selecionada">
+            <img id="imagemSelecionada" src="src/img1.jpg" alt="Imagem Selecionada">
             <script>
                 function mostrarImagem() {
                     var select = document.getElementById("corte");
                     var imagem = document.getElementById("imagemSelecionada");
                     var valorCorte = select.options[select.selectedIndex].value;
                     switch (valorCorte) {
-                        case "Barba e Cabelo Russo":
-                            imagem.src = "src/imagem1.jpg";
+                        case "Barba e Cabelo":
+                            imagem.src = "src/img1.jpg";
                             break;
-                        case "Calvo de cria":
-                            imagem.src = "src/imagem2.jpg";
+                        case "Corte Simples":
+                            imagem.src = "src/img2.jpg";
                             break;
                         case "Mullet":
-                            imagem.src = "src/imagem3.jpg";
+                            imagem.src = "src/img3.jpg";
                             break;
                         default:
                             imagem.src = "";
@@ -74,10 +74,10 @@
                     var barbeiroSelect = select.options[select.selectedIndex].value;
                     switch (barbeiroSelect) {
                         case "Jonas":
-                            imagem.src = "src/jonas.jpg";
+                            imagem.src = "src/jonasBarbeiro.jpg";
                             break;
                         case "Mariano":
-                            imagem.src = "src/mariano.jpg";
+                            imagem.src = "src/marianoBarbeiro.jpg";
                             break;
                         case "Zé":
                             imagem.src = "src/zé.jpg";
