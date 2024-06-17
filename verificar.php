@@ -42,13 +42,17 @@
             if(empty($horario)){
                 echo "<br>"."Você não possui agendamentos"."<br>";
             }
-    
+
+            $b = new Cadastro();
+
             foreach($horario as $h){
-                echo "<br>" . "Barbeiro: " . $h['barbeiro'] . "<br>" .
+                echo "<br>" . "Barbeiro: " . $b->nome($h['id_barbeiro']) . "<br>" .
                 "Corte: " . $h['corte'] . "<br>" .
                 "Data: " . $h['data'] . "<br>" .
                 "Horário: " . $h['hora'] . "<br>";
             }
+		
+
         
     ?>
 

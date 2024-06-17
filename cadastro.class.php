@@ -195,11 +195,11 @@ class Cadastro {
     public function inserirAgendamento(){
         $database = new Conexao();
         $db = $database->getConnection();
-        $sql = 'INSERT INTO horarios (id_cliente, barbeiro, corte ,data, hora) values (:id_cliente, :barbeiro, :corte, :data, :hora)';
+        $sql = 'INSERT INTO horarios (id_cliente, id_barbeiro, corte ,data, hora) values (:id_cliente, :id_barbeiro, :corte, :data, :hora)';
         try{
             $stmt = $db->prepare($sql);
             $stmt->bindParam(':id_cliente',$this->id_cliente);
-            $stmt->bindParam(':barbeiro',$this->barbeiro);
+            $stmt->bindParam(':id_barbeiro',$this->barbeiro);
             $stmt->bindParam(':corte',$this->corte);
             $stmt->bindParam(':data',$this->data);
             $stmt->bindParam(':hora',$this->hora);
@@ -247,10 +247,10 @@ class Cadastro {
     public function consultarHorario($barbeiro, $data, $hora){
         $database = new Conexao();
         $db = $database->getConnection();
-        $sql = "SELECT * FROM horarios WHERE barbeiro=:barbeiro AND data=:data AND hora=:hora";
+        $sql = "SELECT * FROM horarios WHERE id_barbeiro=:id_barbeiro AND data=:data AND hora=:hora";
         try{
             $stmt = $db->prepare($sql);
-            $stmt->bindParam(':barbeiro',$barbeiro);
+            $stmt->bindParam(':id_barbeiro',$barbeiro);
             $stmt->bindParam(':data',$data);
             $stmt->bindParam(':hora',$hora);
             $stmt->execute();
@@ -263,5 +263,28 @@ class Cadastro {
         }
     }
 
+    public function selectBarbeiro($id_barbeiro){
+        $database = new Conexao();
+        $db = $database->getConnection();
+        $sql = "SELECT * FROM barbeiros WHERE id_barbeiro=:id_barbeiro";
+        try{
+            $stmt = $db->prepare($sql);
+            $stmt->bindParam(':id_barbeiro',$id_barbeiro);
+            $stmt->execute();
+            $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            return $result;
+        }catch(PDOException $e){
+            echo 'Erro ao listar barbeiro: ' . $e->getMessage();
+            $result = [];
+            return $result;
+        }
+    }
+
+    public function nome($id_barbeiro){
+        $b = new Cadastro();
+        $barbeiro = $b->selectBarbeiro($id_barbeiro);
+        $nome = $barbeiro[0]['nome'];
+        return $nome;
+    }
 
 }

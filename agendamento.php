@@ -62,9 +62,9 @@
         <div>
             <label for="barbeiro" style="box-shadow: 0px 0px 10px 0px #3f3f3f;">Barbeiro</label>
             <select name="barbeiro" id="barbeiro" onchange="mostrarImagemBarbeiro()" required>
-                <option value="Zé">Zé</option>
-                <option value="Jonas">Jonas</option>
-                <option value="Mariano">Mariano</option>
+                <option value="1">Zé</option>
+                <option value="2">Jonas</option>
+                <option value="3">Mariano</option>
             </select>
             <center><img id="barbeiroSelecionado" src="src/zé.jpg" alt="barbeiro selecionado"></center>
             <script>
