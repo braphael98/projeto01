@@ -287,4 +287,21 @@ class Cadastro {
         return $nome;
     }
 
+    public function listaBarbeiros($id_barbeiro){
+        $database = new Conexao();
+        $db = $database->getConnection();
+        $sql = "SELECT * FROM horarios_barbeiros where id_barbeiro = :id_barbeiro";
+        try{
+            $stmt = $db->prepare($sql);
+            $stmt->bindParam(':id_barbeiro',$id_barbeiro);
+            $stmt->execute();
+            $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            return $result;
+        }catch(PDOException $e){
+            echo 'Erro ao listar barbeiro: ' . $e->getMessage();
+            $result = [];
+            return $result;
+        }
+    }
+
 }

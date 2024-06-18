@@ -7,6 +7,7 @@
 </head>
 <body>
     <?php
+    
     include "cadastro.class.php";
 
     $nome = $_POST['nome'];
