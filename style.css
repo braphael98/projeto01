@@ -1,79 +1,132 @@
-/* Estilos gerais para o formulário */
-form {
-    max-width: 500px;
-    margin: 0 auto;
-    padding: 20px;
-    background-color: #f9f9f9;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-/* Estilos para os rótulos (labels) */
-form label {
-    display: block;
-    margin-bottom: 8px;
-    font-weight: bold;
-    color: #333;
-}
-
-/* Estilos para os campos de entrada (input, textarea, select) */
-form input[type="text"],
-form input[type="email"],
-form input[type="password"],
-form textarea,
-form select {
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 15px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    box-sizing: border-box;
-    font-size: 16px;
-    color: #333;
-}
-
-/* Estilos para os botões */
-form input[type="submit"],
-form button {
-    background-color: #4CAF50;
-    color: white;
-    padding: 10px 15px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 16px;
-}
-
-form input[type="submit"]:hover,
-form button:hover {
-    background-color: #45a049;
-}
-
-/* Estilos para mensagens de erro */
-form .error {
-    color: red;
-    margin-top: -10px;
-    margin-bottom: 10px;
-}
-
-/* Estilos para alinhamento horizontal */
-form .form-row {
+header {
+    border-radius: 10px;
+    border: 2px solid black;
+    border-bottom: 5px solid;
+    background-color: white;
+    padding-left: 50px;
+    padding-right: 50px;
+    height: 60px;
     display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
+    align-items: center;
 }
 
-form .form-row > div {
-    flex: 1;
-    min-width: 45%;
-    margin-bottom: 15px;
-}
-
-form .form-row > div:first-child {
+a {
+    transition: transform 0.2s;
+    vertical-align: middle;
+    color: black;
+    font-weight: 500;
+    font-size: 17px;
+    text-decoration: none;
+    margin-left: 10px;
     margin-right: 10px;
 }
 
-form .form-row > div:last-child {
-    margin-left: 10px;
+a:hover {
+    transform: scale(1.1);
+}
+
+hr { 
+    display: block; height: 1px;
+    border: 0; border-top: 1px solid black;
+    margin: 1em 0; padding: 0; 
+    width: 100%;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="number"],
+input[type="date"],
+textarea,
+select {
+    border-radius: 10px;
+    border: 2px solid black;
+    border-bottom: 5px solid black;
+    height: 30px;
+    width: 500px;
+    font-size: 16px;
+    padding-left: 10px;
+}
+
+input[type="submit"] {
+    transition: transform 0.1s, box-shadow 0.1s;
+    border-radius: 10px;
+    border: 2px solid black;
+    border-bottom: 5px solid black;
+    padding: 10px;
+    background-color: #a8ffac;
+    font-size: 17px;
+    cursor: pointer;
+}
+
+
+input[type="reset"] {
+    transition: transform 0.1s, box-shadow 0.1s;
+    border-radius: 10px;
+    border: 2px solid black;
+    border-bottom: 5px solid black;
+    padding: 10px;
+    background-color: #ffa8a8;
+    font-size: 17px;
+    cursor: pointer;
+}
+
+button {
+    transition: transform 0.1s, box-shadow 0.1s;
+    border-radius: 10px;
+    border: 2px solid black;
+    border-bottom: 5px solid black;
+    padding: 7px;
+    background-color: white;
+    font-size: 17px;
+    cursor: pointer;
+}
+
+input[type="submit"]:hover,
+input[type="reset"]:hover,
+button:hover {
+    transform: translateY(-4px);
+    box-shadow: 0px 4px black;
+}
+input[type="submit"]:active,
+input[type="reset"]:active,
+button:active {
+    transform: translateY(0px);
+    box-shadow: 0px 0px black;
+}
+label {
+    font-size: 17px;
+}
+
+div.compact {
+    border-radius: 10px;
+    border: 2px solid black;
+    border-bottom: 5px solid black;
+    margin: 5px;
+    padding: 10px;
+    background-color: white;
+    color: black;
+    display: inline-block;
+}
+div.large {
+    border-radius: 10px;
+    border: 2px solid black;
+    border-bottom: 5px solid black;
+    margin: 5px;
+    padding: 10px;
+    background-color: white;
+    color: black;
+}
+div.noborder {
+    border-radius: 10px;
+    border: 2px;
+    margin: 5px;
+    padding: 10px;
+    background-color: white;
+    color: black;
+    display: inline-block;
 }
