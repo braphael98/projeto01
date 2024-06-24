@@ -43,10 +43,14 @@
                                 <option value="Barba e Cabelo">Opção 1 - Barba e Cabelo</option>
                                 <option value="Corte Simples">Opção 2 - Corte Simples</option>
                                 <option value="Mullet">Opção 3 - Mullet</option>
+                                <option value="Corte Americano">Opção 4 - Americano</option>
+                                <option value="Corte Neymar 2012">Opção 5 - Neymar 2012</option>
+                                <option value="Bigode Estilo Dick Vigarista">Opção 6 - Bigode Estilo Dick Vigarista</option>
+                                <option value="Bigode Leoncio">Opção 7 - Bigode Leoncio</option>
                             </select>
                         </div>
                         <div class="form-group text-center">
-                            <img id="imagemSelecionada" class="img-fluid mt-2" src="src/img1.jpg">
+                            <img id="imagemSelecionada" class="img-fluid mt-2" src="src/img1.jpg" width="400 px">
                         </div>
                         <script>
                             function mostrarImagem() {
@@ -63,6 +67,18 @@
                                     case "Mullet":
                                         imagem.src = "src/img3.jpg";
                                         break;
+                                    case "Corte Americano":
+                                        imagem.src = "src/img4.jpg";
+                                        break;
+                                    case "Corte Neymar 2012":
+                                        imagem.src = "src/neymar.jpg";
+                                        break;
+                                    case "Bigode Estilo Dick Vigarista":
+                                        imagem.src = "src/img5.jpg";
+                                        break;
+                                    case "Bigode Leoncio":
+                                        imagem.src = "src/img6.jpg";
+                                        break;    
                                     default:
                                         imagem.src = "";
                                 }
